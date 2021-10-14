@@ -19,7 +19,9 @@ shinyUI(fluidPage(theme = shinytheme("united"),
 
     # Sidebar with a slider input for number of bins
     sidebarLayout(
-        sidebarPanel(),
+        sidebarPanel(
+          ##### Input from user placed here
+        ),
         
         # Show a plot of the generated distribution
         mainPanel(
@@ -28,6 +30,7 @@ shinyUI(fluidPage(theme = shinytheme("united"),
                 "The data and work are based off of the work done",
                 tags$a(" here", href = "https://iopscience.iop.org/article/10.1086/516582/pdf"), "."
             ),
+            ##### Place output plot here
         )
     )
 ))

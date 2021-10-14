@@ -7,4 +7,6 @@
 #    http://shiny.rstudio.com/
 #
 new_var <- "New variable value"
-shinyServer(function(input, output,session) {})
+shinyServer(function(input, output,session) {
+  ##### use input and output variables to save an "output" plot here
+})
