@@ -45,4 +45,6 @@ shinyServer(function(input, output,session) {
     }
   })
   
+  ##### add galaxy output code here
+  
 })

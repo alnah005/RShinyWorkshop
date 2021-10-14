@@ -48,6 +48,8 @@ shinyUI(fluidPage(theme = shinytheme("united"),
             selected = NULL,
             multiple = TRUE,
           ),
+          
+          ##### add galaxy location from user here
         ),
         # Show a plot of the generated distribution
         mainPanel(
@@ -60,6 +62,7 @@ shinyUI(fluidPage(theme = shinytheme("united"),
             plotOutput("twoDHist"),
             plotOutput("scatterplot"),
             plotOutput("pcaplot"),
+            ##### add galaxy images here
         )
     )
 ))
