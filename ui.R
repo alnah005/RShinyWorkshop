@@ -41,7 +41,7 @@ shinyUI(fluidPage(theme = shinytheme("united"),
             multiple = TRUE,
             options=list(maxItems=2),
           ),
-         
+         ##### add PCA user input
         ),
         # Show a plot of the generated distribution
         mainPanel(
@@ -53,6 +53,7 @@ shinyUI(fluidPage(theme = shinytheme("united"),
             plotOutput("distPlot"),
             plotOutput("twoDHist"),
             plotOutput("scatterplot"),
+            ##### add PCA output plot
         )
     )
 ))

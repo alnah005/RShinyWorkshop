@@ -36,4 +36,6 @@ shinyServer(function(input, output,session) {
         geom_point()
     }
   })
+  
+  ##### add PCA output code
 })
