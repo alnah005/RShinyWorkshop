@@ -38,7 +38,7 @@ shinyServer(function(input, output,session) {
   })
   
   output$pcaplot <- renderPlot({
-    req(input$columns)
+    req(input$pcacolumns)
     if (!is.null(input$pcacolumns)){
       zest_data.pca <- prcomp(zest_data[input$pcacolumns], center = TRUE,scale. = TRUE)
       fviz_eig(zest_data.pca)
