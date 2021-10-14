@@ -13,3 +13,7 @@ zest_data <- zest_data[complete.cases(zest_data),]
 zest_data <- sapply(zest_data,as.numeric)
 zest_data <- data.frame(zest_data)
 zest_data <-  zest_data %>% select_if(is.numeric)
+
+
+rf <- colorRampPalette(rev(brewer.pal(11,'Spectral')))
+r <- rf(32)

@@ -15,5 +15,25 @@ shinyServer(function(input, output,session) {
     # draw the histogram with the specified number of bins
     hist(x, main=paste("Histogram of ",input$column), breaks = bins, col = 'darkgray', border = 'white',freq = !as.logical(input$density))
   })
-  ##### add more output plots here
+  output$twoDHist <- renderPlot({
+    req(input$columns)
+    y =  input$columns[1]
+    x =  input$columns[2]
+    if (!is.null(x) && !is.null(y)){
+      df <- data.frame(zest_data[[x]],zest_data[[y]])
+      colnames(df) <- c(x, y)
+      h <- hexbin(df)
+      plot(h, colramp=rf)
+    }
+  })
+  
+  output$scatterplot <- renderPlot({
+    req(input$columns)
+    y =  input$columns[1]
+    x =  input$columns[2]
+    if (!is.null(x) && !is.null(y)){
+      ggplot(data = zest_data, aes_string(x = x, y = y)) +
+        geom_point()
+    }
+  })
 })

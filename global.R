@@ -4,6 +4,9 @@ print("I am global")
 library(shiny)
 library(shinythemes)
 library(dplyr)
+library(hexbin)
+library(RColorBrewer)
+library(ggplot2)
 
 app_title <- "ZEST analysis using R Shiny"
 
