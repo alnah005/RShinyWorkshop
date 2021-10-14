@@ -48,8 +48,10 @@ shinyUI(fluidPage(theme = shinytheme("united"),
             selected = NULL,
             multiple = TRUE,
           ),
-          
-          ##### add galaxy location from user here
+          sliderInput("dec",label = "DEC",min =  min(zest_data$dec)-0.03, max = max(zest_data$dec)+0.03,
+                      value =mean(zest_data$dec), step = 0.03),
+          sliderInput("ra",label = "RA",min =  min(zest_data$ra)-0.03, max = max(zest_data$ra)+0.03,
+                      value =mean(zest_data$ra), step = 0.03),
         ),
         # Show a plot of the generated distribution
         mainPanel(
@@ -62,7 +64,7 @@ shinyUI(fluidPage(theme = shinytheme("united"),
             plotOutput("twoDHist"),
             plotOutput("scatterplot"),
             plotOutput("pcaplot"),
-            ##### add galaxy images here
+            plotOutput("galaxy"),
         )
     )
 ))

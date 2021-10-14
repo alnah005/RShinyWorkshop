@@ -45,6 +45,14 @@ shinyServer(function(input, output,session) {
     }
   })
   
-  ##### add galaxy output code here
+  output$galaxy <- renderPlot({
+    req(input$dec)
+    req(input$ra)
+    downloadCutoutGivenDECandRA(input$ra,input$dec,myOpts)
+    X <-  readFITS('./file.fits')
+    xlab <- X$axDat$ctype[1]
+    ylab <- paste(X$axDat$ctype[2], " [", X$axDat$cunit[2], "]", sep = "")
+    image(axes=FALSE, X$imDat, xlab = xlab,col = gray.colors(50), ylab = ylab,zlim=c(quantile(X$imDat,0.10),quantile(X$imDat,0.90)))
+  })
   
 })
