@@ -15,4 +15,5 @@ shinyServer(function(input, output,session) {
     # draw the histogram with the specified number of bins
     hist(x, main=paste("Histogram of ",input$column), breaks = bins, col = 'darkgray', border = 'white',freq = !as.logical(input$density))
   })
+  ##### add more output plots here
 })

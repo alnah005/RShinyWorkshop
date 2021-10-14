@@ -33,8 +33,8 @@ shinyUI(fluidPage(theme = shinytheme("united"),
                       label="Column Name",
                       choice=names(zest_data),
                       selected="m20"),
+          ##### add more inputs here
         ),
-        
         # Show a plot of the generated distribution
         mainPanel(
             tags$br(),
@@ -43,6 +43,7 @@ shinyUI(fluidPage(theme = shinytheme("united"),
                 tags$a(" here", href = "https://iopscience.iop.org/article/10.1086/516582/pdf"), "."
             ),
             plotOutput("distPlot"),
+            ##### add more outputs here
         )
     )
 ))
