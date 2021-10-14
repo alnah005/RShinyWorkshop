@@ -37,5 +37,12 @@ shinyServer(function(input, output,session) {
     }
   })
   
-  ##### add PCA output code
+  output$pcaplot <- renderPlot({
+    req(input$columns)
+    if (!is.null(input$pcacolumns)){
+      zest_data.pca <- prcomp(zest_data[input$pcacolumns], center = TRUE,scale. = TRUE)
+      fviz_eig(zest_data.pca)
+    }
+  })
+  
 })
