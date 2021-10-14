@@ -8,5 +8,11 @@
 #
 new_var <- "New variable value"
 shinyServer(function(input, output,session) {
-  ##### use input and output variables to save an "output" plot here
+  output$distPlot <- renderPlot({
+    # generate bins based on input$bins from ui.R
+    x    <- zest_data[[input$column]]
+    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    # draw the histogram with the specified number of bins
+    hist(x, main=paste("Histogram of ",input$column), breaks = bins, col = 'darkgray', border = 'white',freq = !as.logical(input$density))
+  })
 })

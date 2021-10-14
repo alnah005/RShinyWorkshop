@@ -20,7 +20,19 @@ shinyUI(fluidPage(theme = shinytheme("united"),
     # Sidebar with a slider input for number of bins
     sidebarLayout(
         sidebarPanel(
-          ##### Input from user placed here
+          sliderInput(inputId="bins",
+                      label="Number of bins:",
+                      min = 1,
+                      max = 50,
+                      value = 30),
+          selectInput(inputId="density",
+                      label="Density Plot?",
+                      choice=c(TRUE,FALSE),
+                      selected=FALSE),
+          selectInput(inputId="column",
+                      label="Column Name",
+                      choice=names(zest_data),
+                      selected="m20"),
         ),
         
         # Show a plot of the generated distribution
@@ -30,7 +42,7 @@ shinyUI(fluidPage(theme = shinytheme("united"),
                 "The data and work are based off of the work done",
                 tags$a(" here", href = "https://iopscience.iop.org/article/10.1086/516582/pdf"), "."
             ),
-            ##### Place output plot here
+            plotOutput("distPlot"),
         )
     )
 ))
