@@ -8,6 +8,16 @@
 #
 new_var <- "New variable value"
 shinyServer(function(input, output,session) {
+  
+  zest_data_plot <- reactive({
+    y =  input$columns[1]
+    x =  input$columns[2]
+    if (!is.null(x) && !is.null(y)){
+      zest_data %>% select(input$columns[1], input$columns[2])
+    }
+  })
+  
+  
   output$distPlot <- renderPlot({
     # generate bins based on input$bins from ui.R
     x    <- zest_data[[input$column]]
@@ -16,29 +26,18 @@ shinyServer(function(input, output,session) {
     hist(x, main=paste("Histogram of ",input$column), breaks = bins, col = 'darkgray', border = 'white',freq = !as.logical(input$density))
   })
   output$twoDHist <- renderPlot({
-    req(input$columns)
-    y =  input$columns[1]
-    x =  input$columns[2]
-    if (!is.null(x) && !is.null(y)){
-      df <- data.frame(zest_data[[x]],zest_data[[y]])
-      colnames(df) <- c(x, y)
-      h <- hexbin(df)
-      plot(h, colramp=rf)
-    }
+    h <- hexbin(zest_data_plot())
+    plot(h, colramp=rf)
+    
   })
   
   output$scatterplot <- renderPlot({
-    req(input$columns)
-    y =  input$columns[1]
-    x =  input$columns[2]
-    if (!is.null(x) && !is.null(y)){
-      ggplot(data = zest_data, aes_string(x = x, y = y)) +
+    ggplot(data = zest_data_plot(), aes_string(x = input$columns[2], y = input$columns[1])) +
         geom_point()
-    }
   })
   
   output$pcaplot <- renderPlot({
-    req(input$columns)
+    req(input$pcacolumns)
     if (!is.null(input$pcacolumns)){
       zest_data.pca <- prcomp(zest_data[input$pcacolumns], center = TRUE,scale. = TRUE)
       fviz_eig(zest_data.pca)
